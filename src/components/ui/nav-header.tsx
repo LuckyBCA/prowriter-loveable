@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { PenTool, Menu } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const NavHeader = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -31,7 +33,10 @@ export const NavHeader = () => {
             <Button variant="ghost" className="text-white hover:bg-white/10">
               Sign In
             </Button>
-            <Button className="bg-white text-primary hover:bg-white/90 shadow-glow">
+            <Button 
+              className="bg-white text-primary hover:bg-white/90 shadow-glow"
+              onClick={() => navigate('/dashboard')}
+            >
               Get Started
             </Button>
           </div>
@@ -62,7 +67,10 @@ export const NavHeader = () => {
                 <Button variant="ghost" className="text-white hover:bg-white/10 justify-start">
                   Sign In
                 </Button>
-                <Button className="bg-white text-primary hover:bg-white/90 shadow-glow justify-start">
+                <Button 
+                  className="bg-white text-primary hover:bg-white/90 shadow-glow justify-start"
+                  onClick={() => navigate('/dashboard')}
+                >
                   Get Started
                 </Button>
               </div>

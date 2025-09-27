@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Clock, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero text-white overflow-hidden">
       {/* Background Elements */}
@@ -50,14 +53,15 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-white/90 shadow-glow font-semibold px-8 py-4 text-lg group"
+              onClick={() => navigate('/dashboard')}
             >
               Start Writing for Free
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg"
+              className="bg-white/10 text-white border border-white/30 hover:bg-white/20 backdrop-blur-sm px-8 py-4 text-lg"
             >
               Watch Demo
             </Button>
