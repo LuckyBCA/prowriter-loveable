@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Clock, TrendingUp } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight, Sparkles, Clock, TrendingUp, PlayCircle } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -53,16 +53,19 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-white/90 shadow-glow font-semibold px-8 py-4 text-lg group"
-              onClick={() => navigate('/dashboard')}
+              asChild
             >
-              Start Writing for Free
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <Link to="/signup">
+                Start Writing for Free
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
             <Button 
               variant="secondary" 
               size="lg"
               className="bg-white/10 text-white border border-white/30 hover:bg-white/20 backdrop-blur-sm px-8 py-4 text-lg"
             >
+              <PlayCircle className="w-5 h-5 mr-2" />
               Watch Demo
             </Button>
           </div>

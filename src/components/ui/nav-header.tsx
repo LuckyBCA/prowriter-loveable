@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { PenTool, Menu } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const NavHeader = () => {
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ export const NavHeader = () => {
             <a href="#docs" className="text-white/80 hover:text-white transition-colors">
               Docs
             </a>
-            <Button variant="ghost" className="text-white hover:bg-white/10">
-              Sign In
+            <Button variant="ghost" className="text-white hover:bg-white/10" asChild>
+              <Link to="/login">Sign In</Link>
             </Button>
             <Button 
               className="bg-white text-primary hover:bg-white/90 shadow-glow"
-              onClick={() => navigate('/dashboard')}
+              asChild
             >
-              Get Started
+              <Link to="/signup">Get Started</Link>
             </Button>
           </div>
 
@@ -64,14 +64,14 @@ export const NavHeader = () => {
                 Docs
               </a>
               <div className="flex flex-col gap-2 pt-2">
-                <Button variant="ghost" className="text-white hover:bg-white/10 justify-start">
-                  Sign In
+                <Button variant="ghost" className="text-white hover:bg-white/10 justify-start" asChild>
+                  <Link to="/login">Sign In</Link>
                 </Button>
                 <Button 
                   className="bg-white text-primary hover:bg-white/90 shadow-glow justify-start"
-                  onClick={() => navigate('/dashboard')}
+                  asChild
                 >
-                  Get Started
+                  <Link to="/signup">Get Started</Link>
                 </Button>
               </div>
             </div>
