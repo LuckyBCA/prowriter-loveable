@@ -59,178 +59,161 @@ const Signup = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary-light/20 to-background flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 left-1/6 w-80 h-80 bg-gradient-success rounded-full opacity-10 blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/3 right-1/6 w-96 h-96 bg-gradient-primary rounded-full opacity-10 blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-premium rounded-full opacity-5 blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-      </div>
-      
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center relative z-10">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl grid lg:grid-cols-2 gap-8 items-center">
         
-        {/* Left Side - Enhanced Features */}
-        <div className="hidden lg:block space-y-8 animate-slide-up">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-gradient-success/10 text-success px-4 py-2 rounded-full text-sm font-semibold">
-              <Sparkles className="w-4 h-4" />
-              Always Free Forever
-            </div>
-            <h2 className="text-4xl font-display font-bold leading-tight">
-              Create professional content with{" "}
-              <span className="text-gradient-premium">premium AI</span>
+        {/* Left Side - Features */}
+        <div className="hidden lg:block space-y-8 animate-fade-in">
+          <div>
+            <h2 className="text-3xl font-bold mb-4">
+              Start creating professional content with AI
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Join thousands of content creators who use ProWriter AI to generate high-quality articles, blog posts, and marketing content with cutting-edge AI technology.
+            <p className="text-lg text-muted-foreground">
+              Join thousands of content creators who use ProWriter AI to generate high-quality articles, blog posts, and marketing content.
             </p>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-2xl font-display font-semibold">Premium features included:</h3>
-            <div className="grid gap-4">
-              {[
-                { feature: "5 AI-generated articles daily", icon: "📝" },
-                { feature: "Advanced SEO optimization", icon: "🎯" },
-                { feature: "Multiple AI providers (Deepseek, OpenRouter)", icon: "🚀" },
-                { feature: "Rich text editor with citations", icon: "✍️" },
-                { feature: "Professional templates & formats", icon: "📋" },
-                { feature: "Export & sharing capabilities", icon: "📤" }
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 hover:shadow-card transition-all duration-300" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="text-2xl">{item.icon}</div>
-                  <span className="font-medium text-foreground">{item.feature}</span>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">What you get with ProWriter AI:</h3>
+            <div className="space-y-3">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="bg-success/20 text-success p-1 rounded-full">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="text-muted-foreground">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-gradient-premium p-8 rounded-2xl text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-            <div className="relative z-10">
-              <h4 className="font-display font-bold text-xl mb-3">✨ Limited Time Benefits</h4>
-              <p className="text-white/90 leading-relaxed">
-                Get premium AI writing capabilities completely free. No hidden costs, no subscription required. Start creating amazing content today!
-              </p>
-            </div>
+          <div className="bg-gradient-primary p-6 rounded-xl text-white">
+            <h4 className="font-semibold mb-2">Limited Time Offer</h4>
+            <p className="text-white/90 text-sm">
+              Get 30% off your first month when you upgrade to Pro within 7 days of signup.
+            </p>
           </div>
         </div>
 
-        {/* Right Side - Enhanced Signup Form */}
-        <div className="w-full max-w-lg mx-auto lg:mx-0">
-          {/* Mobile Header */}
-          <div className="text-center mb-8 lg:hidden animate-fade-in">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="bg-gradient-primary p-3 rounded-xl shadow-glow">
+        {/* Right Side - Signup Form */}
+        <div className="w-full max-w-md mx-auto lg:mx-0">
+          {/* Header */}
+          <div className="text-center mb-8 animate-fade-in">
+            <div className="flex items-center justify-center gap-2 mb-4 lg:hidden">
+              <div className="bg-gradient-primary p-3 rounded-xl">
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-3xl font-display font-bold text-gradient">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 ProWriter AI
               </h1>
             </div>
+            <h2 className="text-2xl font-bold">Create Your Account</h2>
+            <p className="text-muted-foreground">
+              Get started with ProWriter AI today
+            </p>
           </div>
 
           {/* Signup Card */}
-          <Card className="card-premium shadow-premium border-0 backdrop-blur-sm animate-scale-in">
-            <CardHeader className="space-y-6 pb-8">
+          <Card className="shadow-2xl border-0 bg-card/95 backdrop-blur-sm animate-scale-in">
+            <CardHeader className="space-y-4">
               <div className="text-center">
-                <CardTitle className="text-2xl font-display font-semibold">Create Your Account</CardTitle>
-                <CardDescription className="text-base mt-2">
-                  Start your premium AI writing journey
+                <CardTitle className="text-xl font-bold">Sign Up</CardTitle>
+                <CardDescription>
+                  Start your free trial today
                 </CardDescription>
               </div>
               
               {/* Demo Badge */}
               <div className="flex justify-center">
-                <Badge variant="secondary" className="bg-success/10 text-success border-success/20 font-medium">
-                  ✨ Demo Mode - Use any details
+                <Badge variant="secondary" className="text-xs">
+                  Demo Mode - Use any details
                 </Badge>
               </div>
             </CardHeader>
 
             <CardContent className="space-y-6">
-              <form onSubmit={handleSignup} className="space-y-6">
+              <form onSubmit={handleSignup} className="space-y-4">
                 {/* Name Input */}
-                <div className="space-y-3">
-                  <Label htmlFor="name" className="text-sm font-semibold">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-sm font-medium">
                     Full Name
                   </Label>
-                  <div className="relative group">
-                    <User className="absolute left-4 top-4 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <div className="relative">
+                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="name"
                       type="text"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="pl-12 h-14 text-base border-2 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 bg-background/80 backdrop-blur transition-all duration-300"
+                      className="pl-9 h-12 text-base"
                       required
                     />
                   </div>
                 </div>
 
                 {/* Email Input */}
-                <div className="space-y-3">
-                  <Label htmlFor="email" className="text-sm font-semibold">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-medium">
                     Email Address
                   </Label>
-                  <div className="relative group">
-                    <Mail className="absolute left-4 top-4 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@company.com"
+                      placeholder="you@example.com"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="pl-12 h-14 text-base border-2 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 bg-background/80 backdrop-blur transition-all duration-300"
+                      className="pl-9 h-12 text-base"
                       required
                     />
                   </div>
                 </div>
 
                 {/* Password Input */}
-                <div className="space-y-3">
-                  <Label htmlFor="password" className="text-sm font-semibold">
+                <div className="space-y-2">
+                  <Label htmlFor="password" className="text-sm font-medium">
                     Password
                   </Label>
-                  <div className="relative group">
-                    <Lock className="absolute left-4 top-4 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
-                      className="pl-12 pr-12 h-14 text-base border-2 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 bg-background/80 backdrop-blur transition-all duration-300"
+                      className="pl-9 pr-9 h-12 text-base"
                       required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-4 text-muted-foreground hover:text-primary transition-colors"
+                      className="absolute right-3 top-3 text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     Must be at least 8 characters long
                   </p>
                 </div>
 
                 {/* Terms Checkbox */}
-                <div className="flex items-start space-x-3 p-4 rounded-xl bg-muted/30 border border-border/50">
+                <div className="flex items-start space-x-2">
                   <Checkbox 
                     id="terms" 
                     checked={agreedToTerms}
                     onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-                    className="mt-1"
                   />
                   <Label htmlFor="terms" className="text-sm leading-relaxed">
                     I agree to the{" "}
-                    <Link to="#" className="text-primary hover:text-primary-glow font-medium transition-colors">
+                    <Link to="#" className="text-primary hover:underline">
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link to="#" className="text-primary hover:text-primary-glow font-medium transition-colors">
+                    <Link to="#" className="text-primary hover:underline">
                       Privacy Policy
                     </Link>
                   </Label>
@@ -239,34 +222,34 @@ const Signup = () => {
                 {/* Sign Up Button */}
                 <Button 
                   type="submit" 
-                  className="w-full h-14 text-base font-semibold btn-premium"
+                  className="w-full h-12 text-base font-medium"
                   disabled={isLoading || !agreedToTerms}
                 >
                   {isLoading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3" />
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
                       Creating account...
                     </>
                   ) : (
                     <>
-                      Create Premium Account
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      Create Account
+                      <ArrowRight className="w-4 h-4 ml-2" />
                     </>
                   )}
                 </Button>
               </form>
 
               {/* Divider */}
-              <div className="relative my-8">
-                <Separator className="bg-border/50" />
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-4 text-sm text-muted-foreground font-medium">
-                  or continue with
+              <div className="relative">
+                <Separator />
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
+                  or
                 </span>
               </div>
 
               {/* Social Signup */}
-              <Button variant="outline" className="w-full h-14 btn-glass" type="button">
-                <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+              <Button variant="outline" className="w-full h-12" type="button">
+                <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                   <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -276,12 +259,12 @@ const Signup = () => {
               </Button>
 
               {/* Sign In Link */}
-              <div className="text-center pt-6">
-                <p className="text-muted-foreground">
+              <div className="text-center pt-4">
+                <p className="text-sm text-muted-foreground">
                   Already have an account?{" "}
                   <Link 
                     to="/login" 
-                    className="font-semibold text-primary hover:text-primary-glow transition-colors"
+                    className="text-primary hover:underline font-medium"
                   >
                     Sign in
                   </Link>
