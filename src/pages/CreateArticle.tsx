@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { 
   ArrowLeft, 
   Search, 
@@ -14,9 +15,20 @@ import {
   Target,
   Users,
   Zap,
-  CheckCircle
+  CheckCircle,
+  Download,
+  Send,
+  Eye
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+interface Citation {
+  id: string
+  title: string
+  url: string
+  author?: string
+  date?: string
+}
 
 const CreateArticle = () => {
   const navigate = useNavigate();
@@ -31,6 +43,8 @@ const CreateArticle = () => {
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [articleContent, setArticleContent] = useState("");
+  const [citations, setCitations] = useState<Citation[]>([]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -45,11 +59,75 @@ const CreateArticle = () => {
     }, 3000);
   };
 
+  const handleGenerateArticle = async () => {
+    setIsGenerating(true);
+    // Simulate article generation
+    setTimeout(() => {
+      setArticleContent(`
+        <h1>Best AI Tools for Content Creation in 2025: Complete Guide</h1>
+        
+        <p>The landscape of content creation has been revolutionized by artificial intelligence, offering unprecedented opportunities for creators, marketers, and businesses to streamline their workflows and enhance productivity.</p>
+        
+        <h2>Introduction: The AI Content Revolution</h2>
+        
+        <p>In 2025, artificial intelligence has become an indispensable tool for content creators worldwide. From generating blog posts to creating social media content, AI-powered tools are transforming how we approach content creation.</p>
+        
+        <h2>Why AI Tools Are Essential for Modern Content Creation</h2>
+        
+        <p>The benefits of incorporating AI into your content creation workflow are numerous:</p>
+        
+        <ul>
+          <li><strong>Increased Efficiency:</strong> AI tools can reduce content creation time by up to 70%</li>
+          <li><strong>Enhanced Quality:</strong> Advanced algorithms ensure grammatically correct and engaging content</li>
+          <li><strong>SEO Optimization:</strong> Built-in SEO features help improve search rankings</li>
+          <li><strong>Consistency:</strong> Maintain brand voice across all content pieces</li>
+        </ul>
+        
+        <blockquote>
+          <p>"AI doesn't replace creativity; it amplifies it." - Content Marketing Institute</p>
+        </blockquote>
+        
+        <h2>Top 10 AI Writing Tools Compared</h2>
+        
+        <p>After extensive testing and research, here are the leading AI writing tools available in 2025...</p>
+        
+        <p><em>This is a sample generated article. The full article would continue with detailed comparisons, pricing, and implementation guides.</em></p>
+      `);
+      
+      // Add sample citations
+      setCitations([
+        {
+          id: '1',
+          title: 'The State of AI in Content Marketing 2025',
+          url: 'https://contentmarketinginstitute.com/ai-report-2025',
+          author: 'Content Marketing Institute',
+          date: '2025'
+        },
+        {
+          id: '2',
+          title: 'AI Tools Market Analysis',
+          url: 'https://techcrunch.com/ai-tools-analysis',
+          author: 'TechCrunch Research',
+          date: 'March 2025'
+        }
+      ]);
+      
+      setIsGenerating(false);
+      setStep(5); // Add step 5 for the editor
+    }, 4000);
+  };
+
+  const handleSaveArticle = () => {
+    // Simulate saving
+    navigate('/dashboard');
+  };
+
   const steps = [
     { number: 1, title: "Topic & Settings", icon: Target },
     { number: 2, title: "Research", icon: Search },
     { number: 3, title: "Outline", icon: FileText },
-    { number: 4, title: "Generate", icon: Sparkles }
+    { number: 4, title: "Generate", icon: Sparkles },
+    { number: 5, title: "Edit & Publish", icon: FileText }
   ];
 
   return (
@@ -354,7 +432,7 @@ const CreateArticle = () => {
                   <Button variant="outline" onClick={() => setStep(2)}>
                     Back
                   </Button>
-                  <Button onClick={() => setStep(4)}>
+                  <Button onClick={handleGenerateArticle}>
                     <Sparkles className="w-4 h-4 mr-2" />
                     Generate Article
                   </Button>
@@ -368,7 +446,7 @@ const CreateArticle = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-primary" />
-                  Generating Article...
+                  {isGenerating ? "Generating Article..." : "Article Generated!"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center py-12">
@@ -382,12 +460,60 @@ const CreateArticle = () => {
                 </p>
                 <div className="max-w-md mx-auto">
                   <div className="w-full bg-secondary rounded-full h-2 mb-2">
-                    <div className="bg-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+                    <div className="bg-primary h-2 rounded-full animate-pulse" style={{ width: isGenerating ? '60%' : '100%' }}></div>
                   </div>
-                  <p className="text-sm text-muted-foreground">60% complete</p>
+                  <p className="text-sm text-muted-foreground">{isGenerating ? '60% complete' : 'Complete!'}</p>
                 </div>
               </CardContent>
             </Card>
+          )}
+
+          {step === 5 && (
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-primary" />
+                    Edit Your Article
+                  </CardTitle>
+                  <div className="flex gap-2">
+                    <Badge variant="secondary">1,850 words</Badge>
+                    <Badge variant="secondary">7 min read</Badge>
+                    <Badge variant="secondary">SEO Score: 94/100</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <RichTextEditor
+                    content={articleContent}
+                    onChange={setArticleContent}
+                    citations={citations}
+                    onCitationAdd={(citation) => setCitations(prev => [...prev, citation])}
+                  />
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-between items-center">
+                <Button variant="outline" onClick={() => setStep(3)}>
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Outline
+                </Button>
+                
+                <div className="flex gap-3">
+                  <Button variant="outline">
+                    <Eye className="w-4 h-4 mr-2" />
+                    Preview
+                  </Button>
+                  <Button variant="outline">
+                    <Download className="w-4 h-4 mr-2" />
+                    Export
+                  </Button>
+                  <Button onClick={handleSaveArticle}>
+                    <Send className="w-4 h-4 mr-2" />
+                    Save & Publish
+                  </Button>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </div>
