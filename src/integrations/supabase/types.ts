@@ -14,13 +14,136 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      articles: {
+        Row: {
+          audience: string | null
+          category: string | null
+          citations: Json | null
+          content: string | null
+          created_at: string
+          id: string
+          keywords: string[] | null
+          language: string | null
+          seo_score: number
+          status: string
+          title: string
+          tone: string | null
+          updated_at: string
+          user_id: string
+          views: number
+          word_count: number
+        }
+        Insert: {
+          audience?: string | null
+          category?: string | null
+          citations?: Json | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          keywords?: string[] | null
+          language?: string | null
+          seo_score?: number
+          status?: string
+          title: string
+          tone?: string | null
+          updated_at?: string
+          user_id: string
+          views?: number
+          word_count?: number
+        }
+        Update: {
+          audience?: string | null
+          category?: string | null
+          citations?: Json | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          keywords?: string[] | null
+          language?: string | null
+          seo_score?: number
+          status?: string
+          title?: string
+          tone?: string | null
+          updated_at?: string
+          user_id?: string
+          views?: number
+          word_count?: number
+        }
+        Relationships: []
+      }
+      daily_usage: {
+        Row: {
+          articles_generated: number
+          created_at: string
+          date: string
+          id: string
+          updated_at: string
+          user_id: string
+          words_generated: number
+        }
+        Insert: {
+          articles_generated?: number
+          created_at?: string
+          date?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+          words_generated?: number
+        }
+        Update: {
+          articles_generated?: number
+          created_at?: string
+          date?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+          words_generated?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      check_daily_limit: {
+        Args: { user_id: string }
+        Returns: number
+      }
+      increment_daily_usage: {
+        Args: { user_id: string; words?: number }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
